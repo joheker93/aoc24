@@ -4,11 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BiConsumer;
 
-/**
- * A grid is an object mapping from an (x,y) coordinate to instanced T object.
- * 
- * @param <T>
- */
 public class Grid<T> {
 
 	List<List<T>> _grid = new ArrayList<>();
