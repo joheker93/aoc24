@@ -94,14 +94,6 @@ public class Graph<T> {
 
 	public List<Edge<T>> getEdgesFrom(Node<T> node) {
 		return _nodeEdges.get(node);
-//		List<Edge<T>> edges = new ArrayList<>();
-//		for (Edge<T> edge : _edges) {
-//			if (edge.hasSource(node)) {
-//				edges.add(edge);
-//			}
-//		}
-//
-//		return edges;
 	}
 
 	public List<Edge<T>> getEdgesTo(Node<T> node) {
