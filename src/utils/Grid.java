@@ -3,6 +3,7 @@ package utils;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BiConsumer;
+import java.util.stream.Stream;
 
 public class Grid<T> {
 
@@ -13,6 +14,14 @@ public class Grid<T> {
 
 	public void insertRow(List<T> row) {
 		_grid.add(row);
+	}
+	
+	public List<List<T>> get(){
+		return _grid;
+	}
+	
+	public Stream<List<T>> stream(){
+		return _grid.stream();
 	}
 
 	public T at(int x, int y) {

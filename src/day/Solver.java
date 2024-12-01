@@ -13,8 +13,11 @@ public class Solver {
 	public static void main(String[] args) {
 		Solver solver = new Solver();
 
+		Mode m = Mode.LIVE;
+
+		String fileEnding = m == Mode.TEST ? ".test" : ".in";
 		for (Day day : solver.getDay(1)) {
-			String path = "src/" + day.getClass().getCanonicalName().toLowerCase().replace(".", "/") + ".in";
+			String path = "src/" + day.getClass().getCanonicalName().toLowerCase().replace(".", "/") + fileEnding;
 			try {
 				String dayName = day.getClass().getSimpleName();
 				String input = Files.readString(new File(path).toPath());
@@ -59,10 +62,14 @@ public class Solver {
 	}
 
 	private Day[] getDays() {
-		return new Day[] { new Day1(), new Day1() };
+		return new Day[] { new Day1()};
 	}
 
 	private Day[] getDay(int day) {
 		return new Day[] { getDays()[day - 1] };
+	}
+
+	private enum Mode {
+		TEST, LIVE;
 	}
 }
