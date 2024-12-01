@@ -27,3 +27,7 @@ replay_pid*
 .project
 /bin/
 
+# input files
+*.in
+*.test
+
