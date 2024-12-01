@@ -14,7 +14,7 @@ public class Solver {
 		Solver solver = new Solver();
 
 		for (Day day : solver.getDay(1)) {
-			String path = "src/main/java/" + day.getClass().getCanonicalName().toLowerCase().replace(".", "/") + ".in";
+			String path = "src/" + day.getClass().getCanonicalName().toLowerCase().replace(".", "/") + ".in";
 			try {
 				String dayName = day.getClass().getSimpleName();
 				String input = Files.readString(new File(path).toPath());

@@ -6,6 +6,18 @@ import java.util.function.Function;
 
 public class Parsing {
 
+	public static int stoi(String s) {
+		return Integer.valueOf(s);
+	}
+
+	public static double stod(String s) {
+		return Double.valueOf(s);
+	}
+
+	public static <T extends Enum<T>> T asEnum(Class<T> enumType, String s) {
+		return enumType.cast(Enum.valueOf(enumType, s));
+	}
+
 	public static String flatten(String s) {
 		return s.replace("\n", " ");
 	}
@@ -14,11 +26,12 @@ public class Parsing {
 		return s.lines().toList();
 	}
 
-	public static List<String> words(String s, char separator){
-		return Arrays.asList(s.replace(separator, ' ').split(" "));
+	public static List<String> words(String s, String separator) {
+		return Arrays.asList(s.replace(separator, " ").split("\s+"));
 	}
+
 	public static List<String> words(String s) {
-		return Arrays.asList(s.split(" "));
+		return Arrays.asList(s.split("\s+"));
 	}
 
 	public static <T> Grid<T> asGrid(String input, Function<String, T> converter) {
@@ -39,4 +52,5 @@ public class Parsing {
 
 		return g;
 	}
+
 }
