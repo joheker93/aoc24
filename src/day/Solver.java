@@ -5,19 +5,22 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.stream.IntStream;
 
 import days.day1.Day1;
+import days.day2.Day2;
 
 public class Solver {
 
 	public static void main(String[] args) {
 		Solver solver = new Solver();
 
-		Mode m = Mode.LIVE;
+		Mode mode = Mode.LIVE;
 
-		String fileEnding = m == Mode.TEST ? ".test" : ".in";
-		for (Day day : solver.getDay(1)) {
+		String fileEnding = mode == Mode.TEST ? ".test" : ".in";
+		for (Day day : solver.getDays()) {
 			String path = "src/" + day.getClass().getCanonicalName().toLowerCase().replace(".", "/") + fileEnding;
+
 			try {
 				String dayName = day.getClass().getSimpleName();
 				String input = Files.readString(new File(path).toPath());
@@ -62,7 +65,7 @@ public class Solver {
 	}
 
 	private Day[] getDays() {
-		return new Day[] { new Day1()};
+		return new Day[] { new Day1(), new Day2() };
 	}
 
 	private Day[] getDay(int day) {
