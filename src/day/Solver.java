@@ -9,6 +9,7 @@ import java.util.stream.IntStream;
 
 import days.day1.Day1;
 import days.day2.Day2;
+import days.day3.Day3;
 
 public class Solver {
 
@@ -65,7 +66,7 @@ public class Solver {
 	}
 
 	private Day[] getDays() {
-		return new Day[] { new Day1(), new Day2() };
+		return new Day[] { new Day1(), new Day2(), new Day3() };
 	}
 
 	private Day[] getDay(int day) {
