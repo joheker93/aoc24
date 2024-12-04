@@ -17,7 +17,7 @@ public class Sequence<T> {
 
 	public static <T extends Enum<T>> List<T> enumSequence(String input, Class<T> enumType) {
 		return sequence(input, s -> {
-			return Parsing.asEnum(enumType,s);
+			return Parsing.asEnum(enumType, s);
 		});
 	}
 
@@ -26,7 +26,7 @@ public class Sequence<T> {
 	}
 
 	public static <T> List<T> sequence(String input, String splitPattern, Function<String, T> converter) {
-		List<String> words = Parsing.words(input,splitPattern);
+		List<String> words = Parsing.words(input, splitPattern);
 		List<T> objects = new ArrayList<>();
 
 		for (var word : words) {
@@ -35,6 +35,15 @@ public class Sequence<T> {
 
 		return objects;
 
+	}
+
+	@SafeVarargs
+	public static <T> List<T> concat(List<? extends T>... lists) {
+		List<T> result = new ArrayList<>();
+		for (var l : lists) {
+			result.addAll(l);
+		}
+		return result;
 	}
 
 	List<T> getList(List<T> t) {

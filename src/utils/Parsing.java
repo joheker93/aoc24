@@ -1,5 +1,6 @@
 package utils;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
@@ -27,21 +28,34 @@ public class Parsing {
 	}
 
 	public static List<String> words(String s, String separator) {
-		return Arrays.asList(s.replace(separator, " ").split("\s+"));
+		if (separator.isEmpty()) {
+			List<String> chars = new ArrayList<String>();
+			for (char c : s.toCharArray()) {
+				chars.add(String.valueOf(c));
+			}
+
+			return chars;
+		}
+
+		return Arrays.asList(s.replace(separator, " ").split("\\s+"));
 	}
 
 	public static List<String> words(String s) {
-		return Arrays.asList(s.split("\s+"));
+		return Arrays.asList(s.split("\\s+"));
 	}
 
-	public static <T> Grid<T> asGrid(String input, Function<String, T> converter) {
+	public static <T> Grid<T> asGrid(String input, String separator, Function<String, T> converter) {
 		Grid<T> g = new Grid<>();
 		for (var line : lines(input)) {
-			var words = words(line).stream().map(converter::apply).toList();
+			var words = words(line, separator).stream().map(converter::apply).toList();
 			g.insertRow(words);
 		}
 
 		return g;
+	}
+
+	public static <T> Grid<T> asGrid(String input, Function<String, T> converter) {
+		return asGrid(input, " ", converter);
 	}
 
 	public static <T> Grid<T> asGrid(List<List<T>> l) {

@@ -14,7 +14,7 @@ import java.util.Stack;
 import java.util.function.BiFunction;
 
 import utils.Grid;
-import utils.Grid.Direction;
+import utils.enums.Direction;
 
 public class Graph<T> {
 	List<Node<T>> _nodes;
@@ -221,6 +221,16 @@ public class Graph<T> {
 
 		System.out.println(System.currentTimeMillis() - now);
 		return new Graph<>(_nodes, _edges);
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+
+		_edges.forEach(e -> {
+			sb.append(e + "\n");
+		});
+		return sb.toString();
 	}
 
 	private class NodeDistance {

@@ -20,7 +20,7 @@ public class Day3 implements Day {
 		for (var pair : pairs) {
 			sum += pair.fst() * pair.snd();
 		}
-
+		
 		System.out.println(sum);
 	}
 

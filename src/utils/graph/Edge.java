@@ -58,5 +58,10 @@ public class Edge<T> {
 		final Edge<?> other = (Edge<?>) obj;
 		return Objects.equals(_source, other._source) && Objects.equals(_target, other._target);
 	}
+	
+	@Override
+	public String toString() {
+		return _source + " --> " + _target;
+	}
 
 }
