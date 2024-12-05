@@ -1,9 +1,10 @@
 package utils;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class Sequence<T> {
 
@@ -35,6 +36,14 @@ public class Sequence<T> {
 
 		return objects;
 
+	}
+
+	public static <T> List<T> dropWhile(Predicate<T> p, List<T> elems) {
+		return elems.stream().dropWhile(p).collect(Collectors.toList());
+	}
+
+	public static <T> List<T> takeWhile(Predicate<T> p, List<T> elems) {
+		return elems.stream().takeWhile(p).collect(Collectors.toList());
 	}
 
 	@SafeVarargs
