@@ -50,10 +50,6 @@ public class Graph<T> {
 		_edges = new ArrayList<Edge<T>>();
 	}
 
-	private void addNode(String name, T value) {
-		_nodes.add(new Node<T>(name, value));
-	}
-
 	void addNode(String name) {
 		_nodes.add(new Node<T>(name, null));
 	}

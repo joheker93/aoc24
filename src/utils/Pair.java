@@ -29,7 +29,7 @@ public class Pair<K, V> {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(_fst, _snd);
+		return _fst.hashCode() * 31 + _snd.hashCode();
 	}
 
 	@Override

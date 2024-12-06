@@ -18,7 +18,9 @@ public class Grid<T> {
 	}
 
 	public Grid(final Grid<T> grid) {
-		_grid = grid.get();
+		for(var row : grid.get()){
+			insertRow(row);
+		}
 	}
 
 	public void insertRow(final List<T> row) {
@@ -33,10 +35,13 @@ public class Grid<T> {
 		return _grid.stream();
 	}
 
+	public void setValue(Point p, T value) {
+		_grid.get(p.getY()).set(p.getX(), value);
+	}
 	public T at(final int x, final int y) {
 		return at(new Point(x, y));
 	}
-
+	
 	public T at(final Point p) {
 		return _grid.get(p.getY()).get(p.getX());
 	}
@@ -194,12 +199,12 @@ public class Grid<T> {
 		}
 	}
 
-	public <K> Grid<K> traverseAndApply(final BiConsumer<Point, T> consumer, final Function<T, K> fun) {
+	public <K> Grid<K> traverseAndApply(final BiConsumer<Point, T> consumer, final BiFunction<Point,T, K> fun) {
 		final Grid<K> newGrid = new Grid<K>();
 
-		for (int x = 0; x < _grid.size(); x++) {
+		for (int y = 0; y < _grid.size(); y++) {
 			final List<K> row = new ArrayList<>();
-			for (int y = 0; y < _grid.get(x).size(); y++) {
+			for (int x = 0; x < _grid.get(y).size(); x++) {
 				final Point p = new Point(x, y);
 
 				if (consumer != null) {
@@ -207,7 +212,7 @@ public class Grid<T> {
 				}
 
 				if (fun != null) {
-					final K k = fun.apply(at(p));
+					final K k = fun.apply(p,at(p));
 					row.add(k);
 				}
 			}
@@ -220,10 +225,10 @@ public class Grid<T> {
 	}
 
 	public <K> Grid<K> map(final Function<T, K> fun) {
-		return traverseAndApply(null, fun);
+		return traverseAndApply(null, (p,t) -> fun.apply(t));
 	}
 
-	private boolean withinGrid(final Point p) {
+	public boolean withinGrid(final Point p) {
 		if (p.getX() < 0 || p.getX() >= _grid.get(0).size()) {
 			return false;
 		}

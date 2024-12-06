@@ -2,18 +2,22 @@ package utils;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import utils.enums.Direction;
 
 public class Point {
 
-	int _x;
-	int _y;
+	private int _x;
+	private int _y;
 
 	public Point(int x, int y) {
 		_x = x;
 		_y = y;
+	}
+
+	public Point(Point p) {
+		_x = p.getX();
+		_y = p.getY();
 	}
 
 	public void set(int x, int y) {
@@ -21,9 +25,25 @@ public class Point {
 		_y = y;
 	}
 
-	public void move(int dx, int dy) {
-		_x = getX() + dx;
-		_y = getY() + dy;
+	public void set(Point p) {
+		_x = p.getX();
+		_y = p.getY();
+	}
+
+	public Point move(int dx, int dy) {
+		return new Point(_x + dx, _y + dy);
+	}
+
+	public Point move(Point dp) {
+		return new Point(_x + dp.getX(), _y + dp.getY());
+	}
+
+	public Point rotate(Point rotationVector) {
+		return new Point(rotationVector.getX(), rotationVector.getY());
+	}
+
+	public Point rotateRight() {
+		return rotate(new Point(-_y, _x));
 	}
 
 	public List<Point> neighbours(Direction dir) {
@@ -64,7 +84,7 @@ public class Point {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(getX(), getY());
+		return _x * 31 + _y;
 	}
 
 	@Override
