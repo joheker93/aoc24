@@ -24,28 +24,25 @@ public class Day6 implements Day {
 	@Override
 	public void solveB(final String input) {
 
-		while (true) {
+		final Grid<String> grid = parse(input, ParsedGrid.class, Part.B).grid();
 
-			final Grid<String> grid = parse(input, ParsedGrid.class, Part.B).grid();
+		final Point start = getStart(grid);
+		final AtomicInteger count = new AtomicInteger();
 
-			final Point start = getStart(grid);
-			final AtomicInteger count = new AtomicInteger();
+		final Set<Point> visited = traverse(grid, start);
+		grid.traverse((pos, val) -> {
 
-			final Set<Point> visited = traverse(grid, start);
-			grid.traverse((pos, val) -> {
+			if (!visited.contains(pos) || val.equals("^")) {
+				return;
+			}
 
-				if (!visited.contains(pos) || val.equals("^")) {
-					return;
-				}
+			if (hasCycle(grid, start, pos)) {
+				count.incrementAndGet();
+			}
 
-				if (hasCycle(grid, start, pos)) {
-					count.incrementAndGet();
-				}
+		});
 
-			});
-
-			System.out.println(count.get());
-		}
+		System.out.println(count.get());
 	}
 
 	private boolean hasCycle(final Grid<String> grid, final Point start, final Point blocker) {
