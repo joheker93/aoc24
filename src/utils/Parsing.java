@@ -14,6 +14,10 @@ public class Parsing {
 	public static double stod(String s) {
 		return Double.valueOf(s);
 	}
+	
+	public static long stol(String s) {
+		return Long.valueOf(s);
+	}
 
 	public static <T extends Enum<T>> T asEnum(Class<T> enumType, String s) {
 		return enumType.cast(Enum.valueOf(enumType, s));
@@ -27,17 +31,18 @@ public class Parsing {
 		return s.lines().toList();
 	}
 
-	public static List<String> words(String s, String separator) {
+	public static List<String> split(String s, String separator){
 		if (separator.isEmpty()) {
 			List<String> chars = new ArrayList<String>();
 			for (char c : s.toCharArray()) {
 				chars.add(String.valueOf(c));
 			}
-
+			
 			return chars;
 		}
-
-		return Arrays.asList(s.replace(separator, " ").split("\\s+"));
+		
+		return Arrays.asList(s.split(separator));
+		
 	}
 
 	public static List<String> words(String s) {
@@ -47,7 +52,7 @@ public class Parsing {
 	public static <T> Grid<T> asGrid(String input, String separator, Function<String, T> converter) {
 		Grid<T> g = new Grid<>();
 		for (var line : lines(input)) {
-			var words = words(line, separator).stream().map(converter::apply).toList();
+			var words = split(line, separator).stream().map(converter::apply).toList();
 			g.insertRow(words);
 		}
 

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.function.UnaryOperator;
 import java.util.stream.Collectors;
 
 public class Sequence<T> {
@@ -27,10 +28,10 @@ public class Sequence<T> {
 	}
 
 	public static <T> List<T> sequence(String input, String splitPattern, Function<String, T> converter) {
-		List<String> words = Parsing.words(input, splitPattern);
+		List<String> parts = Parsing.split(input, splitPattern);
 		List<T> objects = new ArrayList<>();
 
-		for (var word : words) {
+		for (var word : parts) {
 			objects.add(converter.apply(word.strip()));
 		}
 
@@ -57,6 +58,15 @@ public class Sequence<T> {
 
 	List<T> getList(List<T> t) {
 		return t;
+	}
+
+	public static long sum(List<Long> values) {
+		long sum = 0;
+		for (var val : values) {
+			sum += val;
+		}
+
+		return sum;
 	}
 
 }

@@ -12,6 +12,9 @@ import days.day3.Day3;
 import days.day4.Day4;
 import days.day5.Day5;
 import days.day6.Day6;
+import days.day7.Day7;
+import days.day8.Day8;
+import days.day9.Day9;
 
 public class Solver {
 
@@ -68,7 +71,7 @@ public class Solver {
 	}
 
 	private Day[] getDays() {
-		return new Day[] { new Day1(), new Day2(), new Day3(), new Day4(), new Day5(), new Day6() };
+		return new Day[] { new Day1(), new Day2(), new Day3(), new Day4(), new Day5(), new Day6(), new Day7(), new Day8(), new Day9() };
 	}
 
 	private Day[] getDay(int day) {
