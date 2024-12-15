@@ -1,4 +1,4 @@
-package days.day6;
+package days.day06;
 
 import java.util.HashSet;
 import java.util.Set;

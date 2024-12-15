@@ -2,18 +2,18 @@ package utils.graph;
 
 import java.util.Objects;
 
-public class Edge<T> {
-	private final Node<T> _source;
-	private final Node<T> _target;
+public class Edge<K,V> {
+	private final Node<K,V> _source;
+	private final Node<K,V> _target;
 	private final long _weight;
 
-	public Edge(final Node<T> source, final Node<T> target, final long weight) {
+	public Edge(final Node<K,V> source, final Node<K,V> target, final long weight) {
 		_source = source;
 		_target = target;
 		_weight = weight;
 	}
 
-	public Edge(final Node<T> source, final Node<T> target) {
+	public Edge(final Node<K,V> source, final Node<K,V> target) {
 		_source = source;
 		_target = target;
 		_weight = 1;
@@ -24,19 +24,19 @@ public class Edge<T> {
 		return Objects.hash(_source, _target);
 	}
 
-	public boolean hasSource(final Node<?> node) {
+	public boolean hasSource(final Node<?,?> node) {
 		return _source.equals(node);
 	}
 
-	public boolean hasTarget(final Node<?> node) {
+	public boolean hasTarget(final Node<?,?> node) {
 		return _target.equals(node);
 	}
 
-	public Node<T> getTarget() {
+	public Node<K,V> getTarget() {
 		return _target;
 	}
 
-	public Node<T> getSource() {
+	public Node<K,V> getSource() {
 		return _source;
 	}
 
@@ -55,7 +55,7 @@ public class Edge<T> {
 		if (getClass() != obj.getClass()) {
 			return false;
 		}
-		final Edge<?> other = (Edge<?>) obj;
+		final Edge<?,?> other = (Edge<?,?>) obj;
 		return Objects.equals(_source, other._source) && Objects.equals(_target, other._target);
 	}
 	

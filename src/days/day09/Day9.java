@@ -1,4 +1,4 @@
-package days.day9;
+package days.day09;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
@@ -25,12 +25,10 @@ public class Day9 implements Day {
 		List<Integer> compactDisk = compactDisk(expandedDisk);
 		long checkSum = checkSum(compactDisk);
 		System.out.println(checkSum);
-
 	}
 
 	@Override
 	public void solveB(String input) {
-
 		List<Integer> diskMap = parse(input, Disk.class, Part.A).diskMap();
 		List<Integer> expandedDisk = expandDisk(diskMap);
 		AtomicInteger i = new AtomicInteger(0);

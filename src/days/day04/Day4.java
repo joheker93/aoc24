@@ -1,4 +1,4 @@
-package days.day4;
+package days.day04;
 
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;

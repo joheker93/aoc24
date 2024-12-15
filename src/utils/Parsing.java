@@ -9,8 +9,8 @@ public class Parsing {
 
 	public static int stoi(String s) {
 		return Integer.valueOf(s);
-	}
 
+	}
 	public static double stod(String s) {
 		return Double.valueOf(s);
 	}

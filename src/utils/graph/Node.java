@@ -2,33 +2,33 @@ package utils.graph;
 
 import java.util.Objects;
 
-public class Node<T> {
+public class Node<V,I> {
 
-	private final String _name;
-	private final T _value;
+	private final V _value;
+	private final I _identifier;
 
-	public Node(String name, T value) {
-		_name = name;
+	public Node(V value, I identifier) {
 		_value = value;
+		_identifier = identifier;
 	}
 
-	public Node(String name) {
-		_name = name;
-		_value = null;
+	public Node(V value) {
+		_value = value;
+		_identifier = null;
 
 	}
 
-	public String get_name() {
-		return _name;
-	}
-
-	public T get_value() {
+	public V getValue() {
 		return _value;
+	}
+
+	public I getIdentifier() {
+		return _identifier;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(_name, _value);
+		return Objects.hash(_value, _identifier);
 	}
 
 	@Override
@@ -42,13 +42,13 @@ public class Node<T> {
 		if (getClass() != obj.getClass()) {
 			return false;
 		}
-		Node<?> other = (Node<?>) obj;
-		return Objects.equals(_name, other._name) && Objects.equals(_value, other._value);
+		Node<?,?> other = (Node<?,?>) obj;
+		return Objects.equals(_value, other._value) && Objects.equals(_identifier, other._identifier);
 	}
 	
 	@Override
 	public String toString() {
-		return _name;
+		return _value + " @ " + _identifier;
 	}
 
 }

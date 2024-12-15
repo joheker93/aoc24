@@ -1,4 +1,4 @@
-package days.day3;
+package days.day03;
 
 import java.util.ArrayList;
 import java.util.List;

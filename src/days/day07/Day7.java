@@ -1,4 +1,4 @@
-package days.day7;
+package days.day07;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;

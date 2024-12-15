@@ -1,4 +1,4 @@
-package days.day5;
+package days.day05;
 
 import java.util.ArrayList;
 import java.util.HashMap;
