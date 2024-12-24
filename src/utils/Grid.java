@@ -17,6 +17,14 @@ public class Grid<T> {
 	public Grid() {
 	}
 
+	public Grid(List<List<T>> grid){
+		List<List<T>> arr = new ArrayList<>();
+		for(List<T> row : grid){
+			arr.add(new ArrayList<>(row));
+		}
+
+		_grid = arr;
+	}
 	public Grid(final Grid<T> grid) {
 		for (var row : grid.get()) {
 			insertRow(row);
