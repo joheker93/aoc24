@@ -31,6 +31,19 @@ public class Grid<T> {
 		}
 	}
 
+	public static <T> Grid<T> createGrid(int xmax, int ymax, T val){
+        List<List<T>> g =  new ArrayList<>();
+        for(int row = 0; row <= ymax; row++){
+            List<T> r = new ArrayList<>();
+            for(int col = 0; col <= xmax; col++){
+                r.add(val);
+            }
+            g.add(r);
+        }
+
+        return new Grid<>(g);
+    }
+
 	public void insertRow(final List<T> row) {
 		_grid.add(new ArrayList<>(row));
 	}

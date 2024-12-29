@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class Parsing {
 
@@ -28,7 +29,7 @@ public class Parsing {
 	}
 
 	public static List<String> lines(String s) {
-		return s.lines().toList();
+		return s.lines().collect(Collectors.toList());
 	}
 
 	public static List<String> split(String s, String separator){

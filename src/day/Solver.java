@@ -26,6 +26,8 @@ import days.day14.Day14;
 import days.day15.Day15;
 import days.day16.Day16;
 import days.day17.Day17;
+import days.day18.Day18;
+import days.day19.Day19;
 
 public class Solver {
 
@@ -43,6 +45,9 @@ public class Solver {
 			try {
 				String dayName = day.getClass().getSimpleName();
 				String input = Files.readString(new File(path).toPath());
+				if(input.isEmpty()){
+					continue;
+				}
 
 				// Pretty header
 				printHeader(dayName);
@@ -73,7 +78,8 @@ public class Solver {
 		System.out.println("\n\u001B[32m✔ Solved all problems in " + (endTime - startTime) + " ms\u001B[0m");
 
 		String slowestDay = Collections.max(runningTimes.entrySet(), Map.Entry.comparingByValue()).getKey();
-		System.out.println("\u001B[31m✘ Slowest solution ( " + slowestDay + " ) ran for " + runningTimes.get(slowestDay) + " ms\u001B[0m");
+		System.out.println("\u001B[31m✘ Slowest solution ( " + slowestDay + " ) ran for " + runningTimes.get(slowestDay)
+				+ " ms\u001B[0m");
 	}
 
 	private static void printHeader(String dayName) {
@@ -92,7 +98,8 @@ public class Solver {
 
 	private Day[] getDays() {
 		return new Day[] { new Day1(), new Day2(), new Day3(), new Day4(), new Day5(), new Day6(), new Day7(),
-				new Day8(), new Day9(), new Day10(), new Day11(), new Day12(), new Day13(),new Day14(), new Day15(), new Day16(), new Day17() };
+				new Day8(), new Day9(), new Day10(), new Day11(), new Day12(), new Day13(), new Day14(), new Day15(),
+				new Day16(), new Day17(), new Day18(), new Day19() };
 	}
 
 	private Day[] getDay(int day) {
