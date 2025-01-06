@@ -17,32 +17,33 @@ public class Grid<T> {
 	public Grid() {
 	}
 
-	public Grid(List<List<T>> grid){
+	public Grid(List<List<T>> grid) {
 		List<List<T>> arr = new ArrayList<>();
-		for(List<T> row : grid){
+		for (List<T> row : grid) {
 			arr.add(new ArrayList<>(row));
 		}
 
 		_grid = arr;
 	}
+
 	public Grid(final Grid<T> grid) {
 		for (var row : grid.get()) {
 			insertRow(row);
 		}
 	}
 
-	public static <T> Grid<T> createGrid(int xmax, int ymax, T val){
-        List<List<T>> g =  new ArrayList<>();
-        for(int row = 0; row <= ymax; row++){
-            List<T> r = new ArrayList<>();
-            for(int col = 0; col <= xmax; col++){
-                r.add(val);
-            }
-            g.add(r);
-        }
+	public static <T> Grid<T> createGrid(int xmax, int ymax, T val) {
+		List<List<T>> g = new ArrayList<>();
+		for (int row = 0; row <= ymax; row++) {
+			List<T> r = new ArrayList<>();
+			for (int col = 0; col <= xmax; col++) {
+				r.add(val);
+			}
+			g.add(r);
+		}
 
-        return new Grid<>(g);
-    }
+		return new Grid<>(g);
+	}
 
 	public void insertRow(final List<T> row) {
 		_grid.add(new ArrayList<>(row));
@@ -90,8 +91,8 @@ public class Grid<T> {
 		return transpose().get();
 	}
 
-	public List<List<Pair<Point,T>>> indexedColumns() {
-		return transpose().traverseAndApply(null, (pos,val) -> Pair.of(pos, val)).get();
+	public List<List<Pair<Point, T>>> indexedColumns() {
+		return transpose().traverseAndApply(null, (pos, val) -> Pair.of(pos, val)).get();
 	}
 
 	public List<List<T>> diagonals() {
@@ -295,6 +296,19 @@ public class Grid<T> {
 		}
 
 		return sb.toString();
+	}
+
+	public Point find(T val) {
+		for (int x = 0; x < _grid.size(); x++) {
+			for (int y = 0; y < _grid.get(x).size(); y++) {
+				final Point p = new Point(y, x);
+				if (at(p).equals(val)) {
+					return p;
+				}
+			}
+		}
+
+		return null;
 	}
 
 }

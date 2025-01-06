@@ -20,6 +20,8 @@ import utils.enums.Direction;
 
 public class Day20 implements Day {
 
+	private static final int MINIMUM_SAVE = 100;
+
 	@Override
 	public void solveA(String input) {
 		Grid<String> grid = parse(input, Race.class, Part.A).grid();
@@ -60,7 +62,7 @@ public class Day20 implements Day {
 					continue;
 				}
 
-				if ((pCost - cheatCost) - distance(cheatPair) < 100) {
+				if ((pCost - cheatCost) - distance(cheatPair) < MINIMUM_SAVE) {
 					continue;
 				}
 

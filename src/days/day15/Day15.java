@@ -110,7 +110,7 @@ public class Day15 implements Day {
 
 	@Override
 	public Object parseA(String input) {
-		String[] strs = input.split("\n\n");
+		String[] strs = input.split("\r\n\r\n");
 		String mapInput = strs[0];
 		String movesInput = strs[1];
 
