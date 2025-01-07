@@ -1,7 +1,6 @@
 package days.day22;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -38,7 +37,7 @@ public class Day22 implements Day {
 	public void solveB(String input) {
 		var starts = parse(input, Secrets.class, Part.A).startingValues();
 
-		Map<List<Integer>, Long> yields = new HashMap<>();
+		Map<Long, Long> yields = new HashMap<>();
 
 		for (var monkee : starts) {
 			yields(monkee, yields);
@@ -48,30 +47,39 @@ public class Day22 implements Day {
 		System.out.println(Collections.max(yields.values()));
 	}
 
-	private void yields(long monkeyStart, Map<List<Integer>, Long> yields) {
+	public void yields(long monkeyStart, Map<Long, Long> yields) {
 		long current = monkeyStart;
 		int lastValue = (int) (current % 10);
 
-		Set<String> reached = new HashSet<>();
-		List<Integer> diffs = new ArrayList<>(Arrays.asList(0, 0, 0, 0));
+		Set<Long> reached = new HashSet<>();
+		int[] diffs = new int[4];
 
 		for (int i = 0; i < SELLS; i++) {
 			current = randomGen(current);
 			int newVal = (int) (current % 10);
 
-			diffs.remove(0);
-			diffs.add(newVal - lastValue);
+			System.arraycopy(diffs, 1, diffs, 0, 3);
+			diffs[3] = newVal - lastValue;
 
 			if (i >= 3) {
-				List<Integer> key = new ArrayList<>(diffs);
+				long key = uniqueKey(diffs);
 
-				if (reached.add(key.toString())) {
+				if (reached.add(key)) {
 					yields.merge(key, (long) newVal, Long::sum);
 				}
 			}
 
 			lastValue = newVal;
 		}
+	}
+
+	private long uniqueKey(int[] diffs) {
+		long key = 0;
+		long prime = 31;
+		for (int i = 0; i < diffs.length; i++) {
+			key = key * prime + diffs[i];
+		}
+		return key;
 	}
 
 	private long randomGen(long secret) {
