@@ -35,7 +35,12 @@ public class Sequence<T> {
 		}
 
 		return objects;
+	}
 
+	public static <T> List<T> merge(List<T> l1, List<T> l2) {
+		List<T> res = new ArrayList<>(l1);
+		res.addAll(l2);
+		return res;
 	}
 
 	public static <T> List<T> dropWhile(Predicate<T> p, List<T> elems) {
@@ -67,5 +72,4 @@ public class Sequence<T> {
 
 		return sum;
 	}
-
 }
